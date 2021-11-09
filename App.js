@@ -25,12 +25,12 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>Plate Calculator</Text>
       <View style={styles.barbellContainer}>
-        <Bar weight={inputWeight} />
+        <Bar weight={inputWeight} thirtyFive={false} />
       </View>
 
       <View style={styles.weightDisplayWrapper}>
         <Text style={styles.weightDisplayText}>{inputWeight}</Text>
-        <Text style={styles.lbsText}>lbs</Text>
+        <Text style={styles.lbsText}>{inputWeight ? 'lbs' : null}</Text>
       </View>
 
       <KeyboardAvoidingView
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
 
   weightDisplayWrapper: {
-    marginTop: 50,
+    marginTop: 70,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
