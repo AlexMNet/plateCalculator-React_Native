@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import FortyFivePlate from './FortyFivePlate';
-import ThirtyFivePlate from './ThirtyFivePlate';
-import TwentyFivePlate from './TwentyFivePlate';
-import TenPlate from './TenPlate';
+
 import Plate from './Plate';
 
 const Bar = ({ weight }) => {
