@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { set } from 'react-hook-form';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -7,20 +8,29 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 import Bar from './components/Bar';
 import FortyFivePlate from './components/FortyFivePlate';
 
 export default function App() {
+  const [weight, setWeight] = useState('');
+  const [inputWeight, setInputWeight] = useState('');
+
+  const handleOnPress = () => {
+    setInputWeight(weight);
+    Keyboard.dismiss();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Plate Calculator</Text>
       <View style={styles.barbellContainer}>
-        <Bar />
+        <Bar weight={inputWeight} />
       </View>
 
       <View style={styles.weightDisplayWrapper}>
-        <Text style={styles.weightDisplayText}>145</Text>
+        <Text style={styles.weightDisplayText}>{inputWeight}</Text>
         <Text style={styles.lbsText}>lbs</Text>
       </View>
 
@@ -29,11 +39,14 @@ export default function App() {
         style={styles.inputWeightWrapper}
       >
         <TextInput
+          name='input'
           style={styles.input}
           placeholder={'Enter Weight'}
           keyboardType={'number-pad'}
+          value={weight}
+          onChangeText={(text) => setWeight(text)}
         ></TextInput>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleOnPress}>
           <View style={styles.addBtnWrapper}>
             <Text style={styles.addBtnText}>+</Text>
           </View>

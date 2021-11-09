@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "An app that will calculate what plates you need for your barbell at a given weight",
+    "githubUrl": "https://github.com/AlexMNet/plateCalculator-React_Native"
   }
 }
