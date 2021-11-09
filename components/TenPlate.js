@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderWidth: 1,
     borderColor: 'grey',
+    borderRadius: 3,
   },
 });
 
