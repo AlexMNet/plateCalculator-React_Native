@@ -80,22 +80,26 @@ const Bar = ({ weight, thirtyFive }) => {
         </View>
       </View>
       <View style={styles.plateNumbers}>
-        <Text>
-          {plateNumbers.fortyFive ? plateNumbers.fortyFive + ': 45lbs' : null}
-        </Text>
-        <Text>
-          {plateNumbers.thirtyFive ? plateNumbers.thirtyFive + ': 35lbs' : null}
-        </Text>
-        <Text>
-          {plateNumbers.twentyFive ? plateNumbers.twentyFive + ': 25lbs' : null}
-        </Text>
-        <Text>{plateNumbers.ten ? plateNumbers.ten + ': 10lbs' : null}</Text>
-        <Text>{plateNumbers.five ? plateNumbers.five + ': 5lbs' : null}</Text>
-        <Text>
-          {plateNumbers.twoPointFive
-            ? plateNumbers.twoPointFive + ': 2.5lbs'
-            : null}
-        </Text>
+        {/* //Render 45lb plate */}
+        {plateNumbers.fortyFive ? (
+          <Text>{plateNumbers.fortyFive + ': 45lbs'}</Text>
+        ) : null}
+        {/* //Render 35lb plate */}
+        {plateNumbers.thirtyFive ? (
+          <Text>{plateNumbers.thirtyFive + ': 35lbs'}</Text>
+        ) : null}
+        {/* //Render 25lb plate */}
+        {plateNumbers.twentyFive ? (
+          <Text>{plateNumbers.twentyFive + ': 25lbs'}</Text>
+        ) : null}
+        {/* //Render 10lb plate */}
+        {plateNumbers.ten ? <Text>{plateNumbers.ten + ': 10lbs'}</Text> : null}
+        {/* //Render 5lb plate */}
+        {plateNumbers.five ? <Text>{plateNumbers.five + ': 5lbs'}</Text> : null}
+        {/* //Render 2.5lb plate */}
+        {plateNumbers.twoPointFive ? (
+          <Text>{plateNumbers.twoPointFive + ': 2.5lbs'}</Text>
+        ) : null}
       </View>
     </View>
   );
