@@ -4,7 +4,7 @@
     "slug": "plateCalculator-React_Native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/plateCalcIcon.png",
     "splash": {
       "image": "./assets/plateCalcIcon.png",
       "resizeMode": "contain",
