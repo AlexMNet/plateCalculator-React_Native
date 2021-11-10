@@ -8,9 +8,9 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
+  ScrollView,
 } from 'react-native';
 import Bar from './components/Bar';
-import FortyFivePlate from './components/FortyFivePlate';
 
 export default function App() {
   const [weight, setWeight] = useState('');
