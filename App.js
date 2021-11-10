@@ -50,7 +50,7 @@ export default function App() {
           ></TextInput>
           <TouchableOpacity onPress={handleOnPress}>
             <View style={styles.addBtnWrapper}>
-              <Text style={styles.addBtnText}>+</Text>
+              <Text style={styles.addBtnText}>Calc</Text>
             </View>
           </TouchableOpacity>
         </KeyboardAvoidingView>
@@ -77,9 +77,11 @@ const styles = StyleSheet.create({
   },
 
   barbellContainer: {
-    height: 100,
-    width: 100,
-    marginTop: 50,
+    // borderColor: 'red',
+    // borderWidth: 1,
+    height: 150,
+    width: '100%',
+    // marginTop: 50,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
@@ -87,7 +89,10 @@ const styles = StyleSheet.create({
   },
 
   weightDisplayWrapper: {
-    marginTop: 70,
+    // borderColor: 'red',
+    // borderWidth: 1,
+    height: 'auto',
+    marginTop: 175,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -122,12 +127,14 @@ const styles = StyleSheet.create({
   addBtnWrapper: {
     width: 60,
     height: 60,
-    backgroundColor: '#fff',
+    backgroundColor: '#0275d8',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 60,
-    borderColor: '#C0C0C0',
+    borderColor: '#c0c0c0',
     borderWidth: 1,
   },
-  addBtnText: {},
+  addBtnText: {
+    color: '#fff',
+  },
 });
