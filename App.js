@@ -9,8 +9,10 @@ import {
   TouchableOpacity,
   Keyboard,
   ScrollView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Bar from './components/Bar';
+import HideKeyboard from './components/HideKeyboard';
 
 export default function App() {
   const [weight, setWeight] = useState('');
@@ -22,36 +24,38 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Plate Calculator</Text>
-      <View style={styles.barbellContainer}>
-        <Bar weight={inputWeight} thirtyFive={false} />
-      </View>
+    <HideKeyboard>
+      <View style={styles.container}>
+        <Text style={styles.title}>Plate Calculator</Text>
+        <View style={styles.barbellContainer}>
+          <Bar weight={inputWeight} thirtyFive={false} />
+        </View>
 
-      <View style={styles.weightDisplayWrapper}>
-        <Text style={styles.weightDisplayText}>{inputWeight}</Text>
-        <Text style={styles.lbsText}>{inputWeight ? 'lbs' : null}</Text>
-      </View>
+        <View style={styles.weightDisplayWrapper}>
+          <Text style={styles.weightDisplayText}>{inputWeight}</Text>
+          <Text style={styles.lbsText}>{inputWeight ? 'lbs' : null}</Text>
+        </View>
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.inputWeightWrapper}
-      >
-        <TextInput
-          name='input'
-          style={styles.input}
-          placeholder={'Enter Weight'}
-          keyboardType={'number-pad'}
-          value={weight}
-          onChangeText={(text) => setWeight(text)}
-        ></TextInput>
-        <TouchableOpacity onPress={handleOnPress}>
-          <View style={styles.addBtnWrapper}>
-            <Text style={styles.addBtnText}>+</Text>
-          </View>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
-    </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.inputWeightWrapper}
+        >
+          <TextInput
+            name='input'
+            style={styles.input}
+            placeholder={'Enter Weight'}
+            keyboardType={'number-pad'}
+            value={weight}
+            onChangeText={(text) => setWeight(text)}
+          ></TextInput>
+          <TouchableOpacity onPress={handleOnPress}>
+            <View style={styles.addBtnWrapper}>
+              <Text style={styles.addBtnText}>+</Text>
+            </View>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </View>
+    </HideKeyboard>
   );
 }
 
