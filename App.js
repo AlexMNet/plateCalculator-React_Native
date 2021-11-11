@@ -10,17 +10,46 @@ import {
   Keyboard,
   ScrollView,
   TouchableWithoutFeedback,
+  ViewComponent,
 } from 'react-native';
 import Bar from './components/Bar';
 import HideKeyboard from './components/HideKeyboard';
+import RNPickerSelect from 'react-native-picker-select';
+import percentages from './utilities/functions/data/percentages';
 
 export default function App() {
   const [weight, setWeight] = useState('');
   const [inputWeight, setInputWeight] = useState('');
   const [thirtyFive, setThirtyFive] = useState(false);
+  const [percentage, setPercentage] = useState(100);
+  const [targetWeight, setTargetWeight] = useState('');
+
+  const resetValues = () => {
+    setInputWeight('');
+    setWeight('');
+    setPercentage(100);
+    Keyboard.dismiss();
+  };
+
+  const handleValueChange = (value) => {
+    setPercentage(value);
+    handleOnPress();
+  };
 
   const handleOnPress = () => {
-    setInputWeight(weight);
+    setTargetWeight(Math.floor(weight * (percentage / 100)));
+
+    let finalWeight = Math.floor(weight * (percentage / 100));
+
+    if (finalWeight % 10 < 5 && finalWeight % 10 > 0) {
+      finalWeight = finalWeight - (finalWeight % 10);
+    }
+
+    if (finalWeight % 10 > 5 && finalWeight % 10 < 10) {
+      finalWeight = finalWeight - ((finalWeight % 10) - 5);
+    }
+
+    setInputWeight(finalWeight);
     Keyboard.dismiss();
   };
 
@@ -44,14 +73,28 @@ export default function App() {
 
         {/* Barbell */}
         <View style={styles.barbellContainer}>
-          <Bar weight={inputWeight} thirtyFive={thirtyFive} />
+          <Bar
+            weight={inputWeight}
+            thirtyFive={thirtyFive}
+            percentage={percentage}
+          />
         </View>
 
         {/* Main Weight Display */}
-        <View style={styles.weightDisplayWrapper}>
-          <Text style={styles.weightDisplayText}>{inputWeight}</Text>
-          <Text style={styles.lbsText}>{inputWeight ? 'lbs' : null}</Text>
-        </View>
+        {inputWeight ? (
+          <View style={styles.weightDisplayWrapper}>
+            <View style={styles.weightTextWrapper}>
+              <Text style={styles.targetText}>Target Weight: </Text>
+              <Text style={styles.targetText}>{targetWeight}</Text>
+              <Text style={styles.targetText}>lbs</Text>
+            </View>
+            <View style={styles.weightTextWrapper}>
+              <Text>Final Weight: </Text>
+              <Text style={styles.weightDisplayText}>{inputWeight}</Text>
+              <Text style={styles.lbsText}>lbs</Text>
+            </View>
+          </View>
+        ) : null}
 
         {/* Keyboard and BTNs */}
         <KeyboardAvoidingView
@@ -59,6 +102,7 @@ export default function App() {
           style={styles.inputWeightWrapper}
         >
           <View style={styles.btnsWrapper}>
+            {/* future buttons */}
             {/* <TouchableOpacity onPress={handleOnPress}>
               <View style={styles.addBtnWrapper}>
                 <Text style={styles.addBtnText}>Calc</Text>
@@ -85,7 +129,16 @@ export default function App() {
               value={weight}
               onChangeText={(text) => setWeight(text)}
             ></TextInput>
-            <TouchableOpacity onPress={handleOnPress}>
+            <View>
+              <RNPickerSelect
+                style={styles.picker}
+                placeholder={{ label: 'Percentage', value: 100 }}
+                onValueChange={handleValueChange}
+                value={percentage}
+                items={percentages}
+              />
+            </View>
+            <TouchableOpacity onPress={handleOnPress} onLongPress={resetValues}>
               <View style={styles.addBtnWrapper}>
                 <Text style={styles.addBtnText}>Calc</Text>
               </View>
@@ -115,11 +168,8 @@ const styles = StyleSheet.create({
   },
 
   barbellContainer: {
-    // borderColor: 'red',
-    // borderWidth: 1,
     height: 150,
     width: '100%',
-    // marginTop: 50,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
@@ -127,18 +177,26 @@ const styles = StyleSheet.create({
   },
 
   weightDisplayWrapper: {
-    // borderColor: 'red',
-    // borderWidth: 1,
     height: 'auto',
     marginTop: 175,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  weightTextWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
   weightDisplayText: {
-    fontSize: 60,
+    fontSize: 40,
     fontFamily: 'Helvetica',
     fontWeight: '100',
+  },
+
+  targetText: {
+    fontSize: 12,
+    color: 'grey',
   },
 
   lbsText: {
@@ -168,7 +226,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderColor: '#C0C0C0',
     borderWidth: 1,
-    width: 250,
+    width: 225,
   },
 
   btnsWrapper: {
@@ -177,7 +235,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginBottom: 10,
-    marginRight: 50,
+    marginRight: 25,
   },
   toggleBtnWrapper: {
     padding: 5,
