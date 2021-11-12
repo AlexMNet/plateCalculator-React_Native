@@ -15,7 +15,7 @@ import {
 import Bar from './components/Bar';
 import HideKeyboard from './components/HideKeyboard';
 import RNPickerSelect from 'react-native-picker-select';
-import percentages from './utilities/functions/data/percentages';
+import percentages from './utilities/data/percentages';
 
 export default function App() {
   const [weight, setWeight] = useState('');
