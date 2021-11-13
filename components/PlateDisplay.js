@@ -53,19 +53,12 @@ function PlateDisplay({ plateNumbers }) {
 }
 
 const styles = StyleSheet.create({
-  plateNumbersContainer: {},
   plateNumbers: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     height: 'auto',
-    padding: 20,
-    top: 30,
-    // backgroundColor: 'blue',
-  },
-
-  plateNumbersText: {
-    fontSize: 20,
+    padding: 0,
+    flexWrap: 'wrap',
   },
 });
 
