@@ -72,29 +72,12 @@ export default function App() {
         <WeightDisplay inputWeight={inputWeight} targetWeight={targetWeight} />
 
         {/* Barbell */}
-        <View style={styles.barbellContainer}>
-          <Bar
-            weight={inputWeight}
-            thirtyFive={thirtyFive}
-            percentage={percentage}
-          />
-        </View>
 
-        {/* Main Weight Display */}
-        {/* {inputWeight ? (
-          <View style={styles.weightDisplayWrapper}>
-            <View style={styles.weightTextWrapper}>
-              <Text style={styles.targetText}>Target Weight: </Text>
-              <Text style={styles.targetText}>{targetWeight}</Text>
-              <Text style={styles.targetText}>lbs</Text>
-            </View>
-            <View style={styles.weightTextWrapper}>
-              <Text>Final Weight: </Text>
-              <Text style={styles.weightDisplayText}>{inputWeight}</Text>
-              <Text style={styles.lbsText}>lbs</Text>
-            </View>
-          </View>
-        ) : null} */}
+        <Bar
+          weight={inputWeight}
+          thirtyFive={thirtyFive}
+          percentage={percentage}
+        />
 
         {/* Keyboard and BTNs */}
         <KeyboardAvoidingView
