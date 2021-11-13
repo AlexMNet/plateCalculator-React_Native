@@ -16,6 +16,7 @@ import Bar from './components/Bar';
 import HideKeyboard from './components/HideKeyboard';
 import RNPickerSelect from 'react-native-picker-select';
 import percentages from './utilities/data/percentages';
+import WeightDisplay from './components/WeightDisplay';
 
 export default function App() {
   const [weight, setWeight] = useState('');
@@ -68,8 +69,7 @@ export default function App() {
   return (
     <HideKeyboard>
       <View style={styles.container}>
-        {/* Title */}
-        <Text style={styles.title}>Plate Calculator</Text>
+        <WeightDisplay inputWeight={inputWeight} targetWeight={targetWeight} />
 
         {/* Barbell */}
         <View style={styles.barbellContainer}>
@@ -81,7 +81,7 @@ export default function App() {
         </View>
 
         {/* Main Weight Display */}
-        {inputWeight ? (
+        {/* {inputWeight ? (
           <View style={styles.weightDisplayWrapper}>
             <View style={styles.weightTextWrapper}>
               <Text style={styles.targetText}>Target Weight: </Text>
@@ -94,7 +94,7 @@ export default function App() {
               <Text style={styles.lbsText}>lbs</Text>
             </View>
           </View>
-        ) : null}
+        ) : null} */}
 
         {/* Keyboard and BTNs */}
         <KeyboardAvoidingView
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#E8EAED',
+    paddingHorizontal: 20,
   },
 
   title: {
@@ -165,6 +166,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: '200',
     textAlign: 'center',
+  },
+
+  testWeightDisplayContainer: {
+    width: '100%',
+    paddingTop: 150,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
 
   barbellContainer: {
