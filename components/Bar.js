@@ -12,7 +12,7 @@ const Bar = ({ weight, thirtyFive }) => {
   const plateNumbers = plates[plates.length - 1];
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.barContainer}>
         <View style={styles.bar}>
           <View style={styles.barLeft}>
@@ -45,6 +45,12 @@ const Bar = ({ weight, thirtyFive }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 'auto',
+    width: '100%',
+  },
   barContainer: {
     height: 150,
     width: '100%',
@@ -52,7 +58,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    // backgroundColor: 'pink',
   },
 
   bar: {
