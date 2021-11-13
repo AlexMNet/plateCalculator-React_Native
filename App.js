@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -17,6 +17,7 @@ import HideKeyboard from './components/HideKeyboard';
 import RNPickerSelect from 'react-native-picker-select';
 import percentages from './utilities/data/percentages';
 import WeightDisplay from './components/WeightDisplay';
+import { NativeBaseProvider } from 'native-base';
 
 export default function App() {
   const [weight, setWeight] = useState('');
@@ -28,6 +29,7 @@ export default function App() {
   const resetValues = () => {
     setInputWeight('');
     setWeight('');
+    setTargetWeight('');
     setPercentage(100);
     Keyboard.dismiss();
   };
@@ -67,26 +69,30 @@ export default function App() {
   };
 
   return (
-    <HideKeyboard>
-      <View style={styles.container}>
-        <WeightDisplay inputWeight={inputWeight} targetWeight={targetWeight} />
+    <NativeBaseProvider>
+      <HideKeyboard>
+        <View style={styles.container}>
+          <WeightDisplay
+            inputWeight={inputWeight}
+            targetWeight={targetWeight}
+          />
 
-        {/* Barbell */}
+          {/* Barbell */}
 
-        <Bar
-          weight={inputWeight}
-          thirtyFive={thirtyFive}
-          percentage={percentage}
-        />
+          <Bar
+            weight={inputWeight}
+            thirtyFive={thirtyFive}
+            percentage={percentage}
+          />
 
-        {/* Keyboard and BTNs */}
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.inputWeightWrapper}
-        >
-          <View style={styles.btnsWrapper}>
-            {/* future buttons */}
-            {/* <TouchableOpacity onPress={handleOnPress}>
+          {/* Keyboard and BTNs */}
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.inputWeightWrapper}
+          >
+            <View style={styles.btnsWrapper}>
+              {/* future buttons */}
+              {/* <TouchableOpacity onPress={handleOnPress}>
               <View style={styles.addBtnWrapper}>
                 <Text style={styles.addBtnText}>Calc</Text>
               </View>
@@ -96,40 +102,44 @@ export default function App() {
                 <Text style={styles.addBtnText}>Calc</Text>
               </View>
             </TouchableOpacity> */}
-            <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
-              <View style={{ ...toggleWrapper }}>
-                <Text style={styles.toggleBtnText}> 35lb plate</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.inputAndCalcBtnWrapper}>
-            <TextInput
-              name='input'
-              style={styles.input}
-              placeholder={'Enter Weight'}
-              keyboardType={'number-pad'}
-              value={weight}
-              onChangeText={(text) => setWeight(text)}
-            ></TextInput>
-            <View>
-              <RNPickerSelect
-                style={styles.picker}
-                placeholder={{ label: 'Percentage', value: 100 }}
-                onValueChange={handleValueChange}
-                value={percentage}
-                items={percentages}
-              />
+              <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
+                <View style={{ ...toggleWrapper }}>
+                  <Text style={styles.toggleBtnText}> 35lb plate</Text>
+                </View>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={handleOnPress} onLongPress={resetValues}>
-              <View style={styles.addBtnWrapper}>
-                <Text style={styles.addBtnText}>Calc</Text>
+
+            <View style={styles.inputAndCalcBtnWrapper}>
+              <TextInput
+                name='input'
+                style={styles.input}
+                placeholder={'Enter Weight'}
+                keyboardType={'number-pad'}
+                value={weight}
+                onChangeText={(text) => setWeight(text)}
+              ></TextInput>
+              <View>
+                <RNPickerSelect
+                  style={styles.picker}
+                  placeholder={{ label: 'Percentage', value: 100 }}
+                  onValueChange={handleValueChange}
+                  value={percentage}
+                  items={percentages}
+                />
               </View>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-      </View>
-    </HideKeyboard>
+              <TouchableOpacity
+                onPress={handleOnPress}
+                onLongPress={resetValues}
+              >
+                <View style={styles.addBtnWrapper}>
+                  <Text style={styles.addBtnText}>Calc</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </View>
+      </HideKeyboard>
+    </NativeBaseProvider>
   );
 }
 
