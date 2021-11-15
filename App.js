@@ -105,11 +105,11 @@ export default function App() {
                 <Text style={styles.addBtnText}>Calc</Text>
               </View>
             </TouchableOpacity> */}
-              {/* <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
+              <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
                 <View style={{ ...toggleWrapper }}>
                   <Text style={styles.toggleBtnText}> 35lb plate</Text>
                 </View>
-              </TouchableOpacity> */}
+              </TouchableOpacity>
             </View>
 
             <View style={styles.inputAndCalcBtnWrapper}>
