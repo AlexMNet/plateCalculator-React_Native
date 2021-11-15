@@ -18,6 +18,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import percentages from './utilities/data/percentages';
 import WeightDisplay from './components/WeightDisplay';
 import { NativeBaseProvider } from 'native-base';
+import { Btn } from './components/Btn';
 
 export default function App() {
   const [weight, setWeight] = useState('');
@@ -25,6 +26,8 @@ export default function App() {
   const [thirtyFive, setThirtyFive] = useState(false);
   const [percentage, setPercentage] = useState(100);
   const [targetWeight, setTargetWeight] = useState('');
+  const inputAccessoryViewID = 'uniqueID';
+  const [open, setOpen] = useState(true);
 
   const resetValues = () => {
     setInputWeight('');
@@ -102,39 +105,60 @@ export default function App() {
                 <Text style={styles.addBtnText}>Calc</Text>
               </View>
             </TouchableOpacity> */}
-              <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
+              {/* <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
                 <View style={{ ...toggleWrapper }}>
                   <Text style={styles.toggleBtnText}> 35lb plate</Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
 
             <View style={styles.inputAndCalcBtnWrapper}>
-              <TextInput
-                name='input'
-                style={styles.input}
-                placeholder={'Enter Weight'}
-                keyboardType={'number-pad'}
-                value={weight}
-                onChangeText={(text) => setWeight(text)}
-              ></TextInput>
-              <View>
-                <RNPickerSelect
-                  style={styles.picker}
-                  placeholder={{ label: 'Percentage', value: 100 }}
-                  onValueChange={handleValueChange}
-                  value={percentage}
-                  items={percentages}
+              <View style={{ width: '100%', margin: 5 }}>
+                <Btn
+                  text={'calculate'}
+                  onPress={handleOnPress}
+                  onLongPress={resetValues}
                 />
               </View>
-              <TouchableOpacity
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  name='input'
+                  style={styles.input}
+                  placeholder={'Enter Weight'}
+                  keyboardType={'number-pad'}
+                  value={weight}
+                  onChangeText={(text) => setWeight(text)}
+                  clearButtonMode={'always'}
+                  keyboardAppearance={'dark'}
+                  returnKeyLabel={'Calculate'}
+                ></TextInput>
+
+                <View>
+                  <RNPickerSelect
+                    style={styles.picker}
+                    placeholder={{ label: 'Percentage', value: 100 }}
+                    onValueChange={handleValueChange}
+                    value={percentage}
+                    items={percentages}
+                    useNativeAndroidPickerStyle={false}
+                  />
+                </View>
+                {/* <TouchableOpacity
                 onPress={handleOnPress}
                 onLongPress={resetValues}
               >
                 <View style={styles.addBtnWrapper}>
                   <Text style={styles.addBtnText}>Calc</Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+              </View>
             </View>
           </KeyboardAvoidingView>
         </View>
@@ -215,7 +239,7 @@ const styles = StyleSheet.create({
   },
 
   inputAndCalcBtnWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
     width: '100%',
@@ -228,7 +252,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderColor: '#C0C0C0',
     borderWidth: 1,
-    width: 225,
+    width: 285,
   },
 
   btnsWrapper: {
