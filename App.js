@@ -11,6 +11,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   ViewComponent,
+  YellowBox,
 } from 'react-native';
 import Bar from './components/Bar';
 import HideKeyboard from './components/HideKeyboard';
@@ -26,8 +27,7 @@ export default function App() {
   const [thirtyFive, setThirtyFive] = useState(false);
   const [percentage, setPercentage] = useState(100);
   const [targetWeight, setTargetWeight] = useState('');
-  const inputAccessoryViewID = 'uniqueID';
-  const [open, setOpen] = useState(true);
+  const [savedWeight, setSavedWeight] = useState([]);
 
   const resetValues = () => {
     setInputWeight('');
@@ -59,16 +59,12 @@ export default function App() {
     Keyboard.dismiss();
   };
 
-  //Toggle Btn STyles
-  const toggleWrapper = {
-    padding: 5,
-    height: 30,
-    backgroundColor: thirtyFive ? '#FCF55F' : '#FFFFF0',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-    borderColor: '#c0c0c0',
-    borderWidth: 1,
+  const saveWeight = () => {
+    if (inputWeight) {
+      setSavedWeight((currWeight) => {
+        return [...currWeight, inputWeight];
+      });
+    }
   };
 
   return (
@@ -95,21 +91,19 @@ export default function App() {
           >
             <View style={styles.btnsWrapper}>
               {/* future buttons */}
-              {/* <TouchableOpacity onPress={handleOnPress}>
-              <View style={styles.addBtnWrapper}>
-                <Text style={styles.addBtnText}>Calc</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleOnPress}>
-              <View style={styles.addBtnWrapper}>
-                <Text style={styles.addBtnText}>Calc</Text>
-              </View>
-            </TouchableOpacity> */}
-              <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
-                <View style={{ ...toggleWrapper }}>
-                  <Text style={styles.toggleBtnText}> 35lb plate</Text>
-                </View>
-              </TouchableOpacity>
+
+              <Btn
+                text='Save'
+                onPress={saveWeight}
+                bgColor='#10b981'
+                textColor='#fff'
+              />
+              <Btn
+                text='35lb Plate'
+                onPress={() => setThirtyFive(!thirtyFive)}
+                bgColor={thirtyFive ? '#FCF55F' : '#fefce8'}
+                textColor='black'
+              />
             </View>
 
             <View style={styles.inputAndCalcBtnWrapper}>
@@ -118,6 +112,8 @@ export default function App() {
                   text={'calculate'}
                   onPress={handleOnPress}
                   onLongPress={resetValues}
+                  textColor='#fff'
+                  bgColor='#0891b2'
                 />
               </View>
               <View
