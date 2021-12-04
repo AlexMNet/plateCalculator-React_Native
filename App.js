@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -11,7 +12,6 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   ViewComponent,
-  YellowBox,
 } from 'react-native';
 import Bar from './components/Bar';
 import HideKeyboard from './components/HideKeyboard';
@@ -20,10 +20,11 @@ import percentages from './utilities/data/percentages';
 import WeightDisplay from './components/WeightDisplay';
 import { NativeBaseProvider } from 'native-base';
 import { Btn } from './components/Btn';
+import InputAndCalcBtn from './components/InputAndCalBtn';
 
 export default function App() {
   const [weight, setWeight] = useState('');
-  const [inputWeight, setInputWeight] = useState('');
+  const [inputWeight, setInputWeight] = useState(0);
   const [thirtyFive, setThirtyFive] = useState(false);
   const [percentage, setPercentage] = useState(100);
   const [targetWeight, setTargetWeight] = useState('');
@@ -34,6 +35,7 @@ export default function App() {
     setWeight('');
     setTargetWeight('');
     setPercentage(100);
+    setSavedWeight([]);
     Keyboard.dismiss();
   };
 
@@ -56,15 +58,31 @@ export default function App() {
     }
 
     setInputWeight(finalWeight);
+
     Keyboard.dismiss();
   };
 
   const saveWeight = () => {
+    if (savedWeight.includes(inputWeight)) {
+      return Alert.alert('Ops!😮', 'You already saved this weight!');
+    }
     if (inputWeight) {
       setSavedWeight((currWeight) => {
         return [...currWeight, inputWeight];
       });
     }
+  };
+
+  const useSavedWeight = (w) => {
+    w = w + '';
+    setInputWeight(w);
+    setTargetWeight(w);
+  };
+
+  const removeWeight = (w) => {
+    setSavedWeight((prevWeight) => {
+      return prevWeight.filter((btn) => btn !== w);
+    });
   };
 
   return (
@@ -83,6 +101,22 @@ export default function App() {
             thirtyFive={thirtyFive}
             percentage={percentage}
           />
+
+          {/* Saved  weights */}
+          <View style={{ flexDirection: 'row' }}>
+            <ScrollView>
+              {savedWeight.map((w, idx) => (
+                <Btn
+                  key={idx}
+                  text={w}
+                  onPress={() => useSavedWeight(w)}
+                  onLongPress={() => removeWeight(w)}
+                  textColor='#fff'
+                  bgColor='#0891b2'
+                />
+              ))}
+            </ScrollView>
+          </View>
 
           {/* Keyboard and BTNs */}
           <KeyboardAvoidingView
@@ -106,56 +140,14 @@ export default function App() {
               />
             </View>
 
-            <View style={styles.inputAndCalcBtnWrapper}>
-              <View style={{ width: '100%', margin: 5 }}>
-                <Btn
-                  text={'calculate'}
-                  onPress={handleOnPress}
-                  onLongPress={resetValues}
-                  textColor='#fff'
-                  bgColor='#0891b2'
-                />
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  name='input'
-                  style={styles.input}
-                  placeholder={'Enter Weight'}
-                  keyboardType={'number-pad'}
-                  value={weight}
-                  onChangeText={(text) => setWeight(text)}
-                  clearButtonMode={'always'}
-                  keyboardAppearance={'dark'}
-                  returnKeyLabel={'Calculate'}
-                ></TextInput>
-
-                <View>
-                  <RNPickerSelect
-                    style={styles.picker}
-                    placeholder={{ label: 'Percentage', value: 100 }}
-                    onValueChange={handleValueChange}
-                    value={percentage}
-                    items={percentages}
-                    useNativeAndroidPickerStyle={false}
-                  />
-                </View>
-                {/* <TouchableOpacity
-                onPress={handleOnPress}
-                onLongPress={resetValues}
-              >
-                <View style={styles.addBtnWrapper}>
-                  <Text style={styles.addBtnText}>Calc</Text>
-                </View>
-              </TouchableOpacity> */}
-              </View>
-            </View>
+            <InputAndCalcBtn
+              handleOnPress={handleOnPress}
+              resetValues={resetValues}
+              weight={weight}
+              handleValueChange={handleValueChange}
+              percentage={percentage}
+              setWeight={setWeight}
+            />
           </KeyboardAvoidingView>
         </View>
       </HideKeyboard>
@@ -232,6 +224,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
+    backgroundColor: '#E8EAED',
   },
 
   inputAndCalcBtnWrapper: {
