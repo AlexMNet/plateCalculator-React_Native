@@ -2,7 +2,7 @@
 
 This is a simple application made with React Native that calculates what plates you should place on the barbell given a certain weight in lbs.
 
-Live version which is still in early stages of development can be found here https://expo.dev/@alexmnet/platecalculator
+Live version is still in development. If you have the [Expo Go](https://expo.dev/client) app on your phone you can run the current version of the app through this link. https://expo.dev/@alexmnet/platecalculator
 
 My first version of this app can be found here https://github.com/AlexMNet/weight-calculator and is a web app version only using JS and CSS
 
