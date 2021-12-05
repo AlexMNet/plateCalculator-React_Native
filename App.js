@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -19,17 +20,21 @@ import percentages from './utilities/data/percentages';
 import WeightDisplay from './components/WeightDisplay';
 import { NativeBaseProvider } from 'native-base';
 import { Btn } from './components/Btn';
+import InputAndCalcBtn from './components/InputAndCalBtn';
+import Toast from 'react-native-toast-message';
+import toastConfig from './utilities/toastConfig.js';
+import * as Haptics from 'expo-haptics';
 
 export default function App() {
   const [weight, setWeight] = useState('');
-  const [inputWeight, setInputWeight] = useState('');
+  const [inputWeight, setInputWeight] = useState(0);
   const [thirtyFive, setThirtyFive] = useState(false);
   const [percentage, setPercentage] = useState(100);
   const [targetWeight, setTargetWeight] = useState('');
-  const inputAccessoryViewID = 'uniqueID';
-  const [open, setOpen] = useState(true);
+  const [savedWeight, setSavedWeight] = useState([]);
 
   const resetValues = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     setInputWeight('');
     setWeight('');
     setTargetWeight('');
@@ -43,6 +48,7 @@ export default function App() {
   };
 
   const handleOnPress = () => {
+    Haptics.selectionAsync();
     setTargetWeight(Math.floor(weight * (percentage / 100)));
 
     let finalWeight = Math.floor(weight * (percentage / 100));
@@ -56,19 +62,55 @@ export default function App() {
     }
 
     setInputWeight(finalWeight);
+
     Keyboard.dismiss();
   };
 
-  //Toggle Btn STyles
-  const toggleWrapper = {
-    padding: 5,
-    height: 30,
-    backgroundColor: thirtyFive ? '#FCF55F' : '#FFFFF0',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-    borderColor: '#c0c0c0',
-    borderWidth: 1,
+  const handle35OnPress = () => {
+    Haptics.selectionAsync();
+    setThirtyFive(!thirtyFive);
+  };
+
+  const saveWeight = () => {
+    Haptics.selectionAsync();
+    if (savedWeight.includes(inputWeight)) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      return Alert.alert('Uh oh!😮', 'Weight Already saved!');
+    }
+    if (inputWeight) {
+      setSavedWeight((currWeight) => {
+        return [...currWeight, inputWeight];
+      });
+      Toast.show({
+        type: 'success',
+        text1: 'Weight saved!',
+        text2: `${inputWeight} lbs`,
+        visibilityTime: 2000,
+      });
+    }
+  };
+
+  const useSavedWeight = (w) => {
+    Haptics.selectionAsync();
+    w = w + '';
+    setInputWeight(w);
+    setTargetWeight(w);
+  };
+
+  const removeWeight = (w) => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    setSavedWeight((prevWeight) => {
+      return prevWeight.filter((btn) => btn !== w);
+    });
+  };
+  const clearSavedWeights = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    Toast.show({
+      type: 'info',
+      text1: 'Weights Deleted!',
+      visibilityTime: 2000,
+    });
+    setSavedWeight([]);
   };
 
   return (
@@ -88,79 +130,65 @@ export default function App() {
             percentage={percentage}
           />
 
+          {/* Saved  weights */}
+          <View style={{ flexDirection: 'row', height: 300 }}>
+            <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+              {savedWeight.map((w, idx) => (
+                <Btn
+                  key={idx}
+                  text={w}
+                  onPress={() => useSavedWeight(w)}
+                  onLongPress={() => removeWeight(w)}
+                  textColor='#fff'
+                  bgColor='#0891b2'
+                />
+              ))}
+            </ScrollView>
+          </View>
+
           {/* Keyboard and BTNs */}
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.inputWeightWrapper}
           >
+            {/* Dislay an alert everytime a weight is saved. Alert is active only
+            for a few seconds. */}
+            <View>
+              {savedWeight.length > 0 && (
+                <Btn
+                  text='clear saved weights'
+                  onPress={clearSavedWeights}
+                  bgColor='#F59E0B'
+                  textColor='#fff'
+                />
+              )}
+            </View>
             <View style={styles.btnsWrapper}>
               {/* future buttons */}
-              {/* <TouchableOpacity onPress={handleOnPress}>
-              <View style={styles.addBtnWrapper}>
-                <Text style={styles.addBtnText}>Calc</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleOnPress}>
-              <View style={styles.addBtnWrapper}>
-                <Text style={styles.addBtnText}>Calc</Text>
-              </View>
-            </TouchableOpacity> */}
-              <TouchableOpacity onPress={() => setThirtyFive(!thirtyFive)}>
-                <View style={{ ...toggleWrapper }}>
-                  <Text style={styles.toggleBtnText}> 35lb plate</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
 
-            <View style={styles.inputAndCalcBtnWrapper}>
-              <View style={{ width: '100%', margin: 5 }}>
-                <Btn
-                  text={'calculate'}
-                  onPress={handleOnPress}
-                  onLongPress={resetValues}
-                />
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  name='input'
-                  style={styles.input}
-                  placeholder={'Enter Weight'}
-                  keyboardType={'number-pad'}
-                  value={weight}
-                  onChangeText={(text) => setWeight(text)}
-                  clearButtonMode={'always'}
-                  keyboardAppearance={'dark'}
-                  returnKeyLabel={'Calculate'}
-                ></TextInput>
-
-                <View>
-                  <RNPickerSelect
-                    style={styles.picker}
-                    placeholder={{ label: 'Percentage', value: 100 }}
-                    onValueChange={handleValueChange}
-                    value={percentage}
-                    items={percentages}
-                    useNativeAndroidPickerStyle={false}
-                  />
-                </View>
-                {/* <TouchableOpacity
-                onPress={handleOnPress}
-                onLongPress={resetValues}
-              >
-                <View style={styles.addBtnWrapper}>
-                  <Text style={styles.addBtnText}>Calc</Text>
-                </View>
-              </TouchableOpacity> */}
-              </View>
+              <Btn
+                text='Save'
+                onPress={saveWeight}
+                bgColor='#10b981'
+                textColor='#fff'
+              />
+              <Btn
+                text='35lb Plate'
+                onPress={handle35OnPress}
+                bgColor={thirtyFive ? '#FCF55F' : '#fefce8'}
+                textColor='black'
+              />
             </View>
+            <InputAndCalcBtn
+              handleOnPress={handleOnPress}
+              resetValues={resetValues}
+              weight={weight}
+              handleValueChange={handleValueChange}
+              percentage={percentage}
+              setWeight={setWeight}
+            />
           </KeyboardAvoidingView>
+          <Toast config={toastConfig} />
         </View>
       </HideKeyboard>
     </NativeBaseProvider>
@@ -236,6 +264,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
+    backgroundColor: '#E8EAED',
   },
 
   inputAndCalcBtnWrapper: {
