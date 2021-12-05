@@ -21,6 +21,9 @@ import WeightDisplay from './components/WeightDisplay';
 import { NativeBaseProvider } from 'native-base';
 import { Btn } from './components/Btn';
 import InputAndCalcBtn from './components/InputAndCalBtn';
+import Toast from 'react-native-toast-message';
+import toastConfig from './utilities/toastConfig.js';
+import * as Haptics from 'expo-haptics';
 
 export default function App() {
   const [weight, setWeight] = useState('');
@@ -31,11 +34,11 @@ export default function App() {
   const [savedWeight, setSavedWeight] = useState([]);
 
   const resetValues = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     setInputWeight('');
     setWeight('');
     setTargetWeight('');
     setPercentage(100);
-    setSavedWeight([]);
     Keyboard.dismiss();
   };
 
@@ -45,6 +48,7 @@ export default function App() {
   };
 
   const handleOnPress = () => {
+    Haptics.selectionAsync();
     setTargetWeight(Math.floor(weight * (percentage / 100)));
 
     let finalWeight = Math.floor(weight * (percentage / 100));
@@ -62,27 +66,51 @@ export default function App() {
     Keyboard.dismiss();
   };
 
+  const handle35OnPress = () => {
+    Haptics.selectionAsync();
+    setThirtyFive(!thirtyFive);
+  };
+
   const saveWeight = () => {
+    Haptics.selectionAsync();
     if (savedWeight.includes(inputWeight)) {
-      return Alert.alert('Ops!😮', 'You already saved this weight!');
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      return Alert.alert('Uh oh!😮', 'Weight Already saved!');
     }
     if (inputWeight) {
       setSavedWeight((currWeight) => {
         return [...currWeight, inputWeight];
       });
+      Toast.show({
+        type: 'success',
+        text1: 'Weight saved!',
+        text2: `${inputWeight} lbs`,
+        visibilityTime: 2000,
+      });
     }
   };
 
   const useSavedWeight = (w) => {
+    Haptics.selectionAsync();
     w = w + '';
     setInputWeight(w);
     setTargetWeight(w);
   };
 
   const removeWeight = (w) => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     setSavedWeight((prevWeight) => {
       return prevWeight.filter((btn) => btn !== w);
     });
+  };
+  const clearSavedWeights = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    Toast.show({
+      type: 'info',
+      text1: 'Weights Deleted!',
+      visibilityTime: 2000,
+    });
+    setSavedWeight([]);
   };
 
   return (
@@ -103,8 +131,8 @@ export default function App() {
           />
 
           {/* Saved  weights */}
-          <View style={{ flexDirection: 'row' }}>
-            <ScrollView>
+          <View style={{ flexDirection: 'row', height: 300 }}>
+            <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
               {savedWeight.map((w, idx) => (
                 <Btn
                   key={idx}
@@ -123,6 +151,18 @@ export default function App() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.inputWeightWrapper}
           >
+            {/* Dislay an alert everytime a weight is saved. Alert is active only
+            for a few seconds. */}
+            <View>
+              {savedWeight.length > 0 && (
+                <Btn
+                  text='clear saved weights'
+                  onPress={clearSavedWeights}
+                  bgColor='#F59E0B'
+                  textColor='#fff'
+                />
+              )}
+            </View>
             <View style={styles.btnsWrapper}>
               {/* future buttons */}
 
@@ -134,12 +174,11 @@ export default function App() {
               />
               <Btn
                 text='35lb Plate'
-                onPress={() => setThirtyFive(!thirtyFive)}
+                onPress={handle35OnPress}
                 bgColor={thirtyFive ? '#FCF55F' : '#fefce8'}
                 textColor='black'
               />
             </View>
-
             <InputAndCalcBtn
               handleOnPress={handleOnPress}
               resetValues={resetValues}
@@ -149,6 +188,7 @@ export default function App() {
               setWeight={setWeight}
             />
           </KeyboardAvoidingView>
+          <Toast config={toastConfig} />
         </View>
       </HideKeyboard>
     </NativeBaseProvider>
