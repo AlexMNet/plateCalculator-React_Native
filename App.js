@@ -18,12 +18,22 @@ import HideKeyboard from './components/HideKeyboard';
 import RNPickerSelect from 'react-native-picker-select';
 import percentages from './utilities/data/percentages';
 import WeightDisplay from './components/WeightDisplay';
-import { NativeBaseProvider } from 'native-base';
+import {
+  NativeBaseProvider,
+  useDisclose,
+  Actionsheet,
+  Box,
+  Button,
+  VStack,
+  IconButton,
+  Icon,
+} from 'native-base';
 import { Btn } from './components/Btn';
 import InputAndCalcBtn from './components/InputAndCalBtn';
 import Toast from 'react-native-toast-message';
 import toastConfig from './utilities/toastConfig.js';
 import * as Haptics from 'expo-haptics';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
   const [weight, setWeight] = useState('');
@@ -32,6 +42,7 @@ export default function App() {
   const [percentage, setPercentage] = useState(100);
   const [targetWeight, setTargetWeight] = useState('');
   const [savedWeight, setSavedWeight] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclose();
 
   const resetValues = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -132,7 +143,7 @@ export default function App() {
 
           {/* Saved  weights */}
           <View style={{ flexDirection: 'row', height: 300 }}>
-            <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+            <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
               {savedWeight.map((w, idx) => (
                 <Btn
                   key={idx}
@@ -151,33 +162,48 @@ export default function App() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.inputWeightWrapper}
           >
-            {/* Dislay an alert everytime a weight is saved. Alert is active only
-            for a few seconds. */}
-            <View>
-              {savedWeight.length > 0 && (
-                <Btn
-                  text='clear saved weights'
-                  onPress={clearSavedWeights}
-                  bgColor='#F59E0B'
-                  textColor='#fff'
-                />
-              )}
-            </View>
             <View style={styles.btnsWrapper}>
               {/* future buttons */}
+              <VStack space={3} alignItems='flex-end'>
+                <IconButton
+                  onPress={onOpen}
+                  icon={<Icon as={Ionicons} name='settings-outline' />}
+                  _icon={{
+                    color: '#4B5563',
+                    size: 'md',
+                  }}
+                  _pressed={{
+                    bg: 'transparent',
+                    _icon: {
+                      name: 'settings',
+                    },
+                  }}
+                />
 
-              <Btn
-                text='Save'
-                onPress={saveWeight}
-                bgColor='#10b981'
-                textColor='#fff'
-              />
-              <Btn
-                text='35lb Plate'
-                onPress={handle35OnPress}
-                bgColor={thirtyFive ? '#FCF55F' : '#fefce8'}
-                textColor='black'
-              />
+                {/* <Btn
+                  text={<Entypo name='cog' size={24} color='#9CA3AF' />}
+                  onPress={onOpen}
+                  bgColor='transparent'
+                  textColor='#fff'
+                /> */}
+                {/* <Btn
+                  text='Save'
+                  onPress={saveWeight}
+                  bgColor='#10b981'
+                  textColor='#fff'
+                /> */}
+                <Button onPress={saveWeight} size='md' colorScheme='success'>
+                  Save
+                </Button>
+                <Button
+                  size='md'
+                  colorScheme='amber'
+                  isDisabled={savedWeight.length === 0}
+                  onPress={clearSavedWeights}
+                >
+                  Clear All Weights
+                </Button>
+              </VStack>
             </View>
             <InputAndCalcBtn
               handleOnPress={handleOnPress}
@@ -189,6 +215,29 @@ export default function App() {
             />
           </KeyboardAvoidingView>
           <Toast config={toastConfig} />
+          <Actionsheet isOpen={isOpen} onClose={onClose}>
+            <Actionsheet.Content>
+              <Box w='100%' h={60} px={4} justifyContent='center'>
+                <Text
+                  fontSize='16'
+                  color='gray.500'
+                  _dark={{
+                    color: 'gray.300',
+                  }}
+                >
+                  Settings
+                </Text>
+              </Box>
+              <Actionsheet.Item>
+                <Btn
+                  text='35lb Plate'
+                  onPress={handle35OnPress}
+                  bgColor={thirtyFive ? '#FCF55F' : '#fefce8'}
+                  textColor='black'
+                />
+              </Actionsheet.Item>
+            </Actionsheet.Content>
+          </Actionsheet>
         </View>
       </HideKeyboard>
     </NativeBaseProvider>
