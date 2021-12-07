@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   testWeightDisplayContainer: {
     width: '100%',
     height: 100,
-    marginTop: 50,
+    // marginTop: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
