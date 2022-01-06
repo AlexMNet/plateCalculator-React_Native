@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="demo/mobile-demo.gif" width="400">
+</div>
+
 # Plate Calculator
 
 This is a simple application made with React Native that calculates what plates you should place on the barbell given a certain weight in lbs.
