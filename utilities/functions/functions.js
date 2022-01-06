@@ -1,3 +1,4 @@
+//Generate plate components based on weight, and whether 35lb plates are enabled
 export const genPlateComponents = (weight, thirtyFive) => {
   const plates = [];
 
