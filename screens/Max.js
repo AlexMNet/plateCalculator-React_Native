@@ -90,10 +90,12 @@ export default function Max({ navigation }) {
                 keyboardType={'number-pad'}
                 value={inputWeight}
                 onChangeText={(input) => setInputWeight(input)}
-                clearButtonMode={'always'}
+                clearButtonMode={'never'}
                 keyboardAppearance={'dark'}
                 returnKeyLabel={'Calculate'}
-                style={tw`rounded-full border-2 border-gray-400 p-5 mb-5`}
+                blurOnSubmit={true}
+                textAlign='center'
+                style={tw`border-b-2 border-gray-400 p-5 mb-5 text-xl`}
               />
               <TextInput
                 name='input'
@@ -101,10 +103,12 @@ export default function Max({ navigation }) {
                 keyboardType={'number-pad'}
                 value={reps}
                 onChangeText={(input) => setReps(input)}
-                clearButtonMode={'always'}
+                clearButtonMode={'never'}
                 keyboardAppearance={'dark'}
                 returnKeyLabel={'Calculate'}
-                style={tw`rounded-full border-2 border-gray-400 p-5 mb-5`}
+                textAlign='center'
+                style={tw` border-b-2 border-gray-400 p-5 mb-5 text-xl
+                `}
               />
               <Button
                 style={tw`w-full bg-blue-500`}
