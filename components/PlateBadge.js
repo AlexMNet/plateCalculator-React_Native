@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Badge,
-  Button,
-  VStack,
-  Center,
-  NativeBaseProvider,
-  StyleSheet,
-} from 'native-base';
+import { Badge, Button, VStack, Center } from 'native-base';
 export function PlateBadge({ text, number, bg }) {
   return (
     <Center mr='5' mb='2'>

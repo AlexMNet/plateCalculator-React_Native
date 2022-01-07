@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
 import {
-  Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   Text,
   View,
   TextInput,
-  TouchableOpacity,
   Keyboard,
-  ScrollView,
-  TouchableWithoutFeedback,
-  ViewComponent,
 } from 'react-native';
-import {
-  NativeBaseProvider,
-  useDisclose,
-  Actionsheet,
-  Box,
-  Button,
-  VStack,
-  IconButton,
-  Icon,
-} from 'native-base';
-import { Btn } from '../components/Btn';
+import { NativeBaseProvider, Button } from 'native-base';
 import HideKeyboard from '../components/HideKeyboard';
 import tw from 'twrnc';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -126,4 +111,5 @@ export default function Max({ navigation }) {
   );
 }
 
+//Testing tailwindcss
 const styles = StyleSheet.create({});
