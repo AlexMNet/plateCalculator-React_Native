@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Center, NativeBaseProvider } from 'native-base';
+import { Button } from 'native-base';
 export const Btn = ({
   onPress,
   onLongPress,

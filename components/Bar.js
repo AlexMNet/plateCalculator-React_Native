@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { genPlateComponents } from '../utilities/functions/functions';
 import Plate from './Plate';
 import PlateDisplay from './PlateDisplay';
@@ -25,8 +25,6 @@ const Bar = ({ weight, thirtyFive }) => {
               />
             ))}
           </View>
-
-          <View style={styles.barCenter} />
           <View style={styles.barRight}>
             {plates.map((plate, idx) => (
               <Plate
@@ -59,7 +57,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
-
   bar: {
     width: 320,
     height: 5,

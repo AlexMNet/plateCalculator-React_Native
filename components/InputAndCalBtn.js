@@ -46,7 +46,7 @@ export default function inputAndCalcBtn({
         <View>
           <RNPickerSelect
             placeholder={{ label: 'Percentage', value: 100 }}
-            onValueChange={handleValueChange}
+            onValueChange={(value) => handleValueChange(value)}
             value={percentage}
             items={percentages}
             useNativeAndroidPickerStyle={false}
