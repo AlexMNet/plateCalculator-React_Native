@@ -18,15 +18,10 @@ export default function Home({ navigation }) {
         <HideKeyboard>
           <View style={styles.container}>
             <WeightDisplay />
-
             <Bar />
-
             <SavedWeights />
-
             <InputUI />
-
             <Toast config={toastConfig} />
-
             <SettingsDrawer />
           </View>
         </HideKeyboard>

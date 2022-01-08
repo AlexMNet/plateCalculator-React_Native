@@ -6,19 +6,8 @@ import { Button, VStack, IconButton, Icon } from 'native-base';
 import { useHomeContext } from '../context/HomeProvider';
 
 const InputUI = () => {
-  const {
-    onOpen,
-    saveWeight,
-    savedWeight,
-    clearSavedWeights,
-    handleOnPress,
-    resetValues,
-    weight,
-    handleValueChange,
-    percentage,
-    setWeight,
-    enterWeight,
-  } = useHomeContext();
+  const { onOpen, saveWeight, savedWeight, clearSavedWeights } =
+    useHomeContext();
 
   return (
     <KeyboardAvoidingView
@@ -57,14 +46,7 @@ const InputUI = () => {
           </Button>
         </VStack>
       </View>
-      <InputAndCalcBtn
-      // handleOnPress={handleOnPress}
-      // resetValues={resetValues}
-      // weight={weight}
-      // handleValueChange={handleValueChange}
-      // percentage={percentage}
-      // enterWeight={enterWeight}
-      />
+      <InputAndCalcBtn />
     </KeyboardAvoidingView>
   );
 };

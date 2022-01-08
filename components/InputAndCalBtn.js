@@ -13,7 +13,6 @@ export default function inputAndCalcBtn() {
     handleValueChange,
     percentage,
     setWeight,
-    enterWeight,
   } = useHomeContext();
 
   return (
