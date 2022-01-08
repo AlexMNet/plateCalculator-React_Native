@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { useHomeContext } from '../context/HomeProvider';
 
-function WeightDisplay({ inputWeight, targetWeight }) {
+function WeightDisplay() {
+  const { inputWeight, targetWeight } = useHomeContext();
+
   return (
     <View style={styles.testWeightDisplayContainer}>
       <View style={styles.targetWeightWrapper}>

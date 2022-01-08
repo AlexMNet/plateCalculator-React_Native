@@ -3,10 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import { genPlateComponents } from '../utilities/functions/functions';
 import Plate from './Plate';
 import PlateDisplay from './PlateDisplay';
+import { useHomeContext } from '../context/HomeProvider';
 
-const Bar = ({ weight, thirtyFive }) => {
+const Bar = () => {
+  const { inputWeight, thirtyFive } = useHomeContext();
   //Create array of objects. Each object defines a plate Compnent
-  const plates = genPlateComponents(weight, thirtyFive);
+  const plates = genPlateComponents(inputWeight, thirtyFive);
 
   //Last object in plates array is an object of plates as keys and the number of each plate as values
   const plateNumbers = plates[plates.length - 1];

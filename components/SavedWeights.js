@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { Btn } from '../components/Btn';
+import { useHomeContext } from '../context/HomeProvider';
 
-const SavedWeights = ({ savedWeight, useSavedWeight, removeWeight }) => {
+const SavedWeights = () => {
+  const { savedWeight, useSavedWeight, removeWeight } = useHomeContext();
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ paddingBottom: 110 }}>
