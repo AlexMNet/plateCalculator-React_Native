@@ -3,15 +3,19 @@ import RNPickerSelect from 'react-native-picker-select';
 import { StyleSheet, View, TextInput } from 'react-native';
 import { Btn } from './Btn';
 import percentages from '../utilities/data/percentages';
+import { useHomeContext } from '../context/HomeProvider';
 
-export default function inputAndCalcBtn({
-  handleOnPress,
-  resetValues,
-  weight,
-  handleValueChange,
-  percentage,
-  setWeight,
-}) {
+export default function inputAndCalcBtn() {
+  const {
+    handleOnPress,
+    resetValues,
+    weight,
+    handleValueChange,
+    percentage,
+    setWeight,
+    enterWeight,
+  } = useHomeContext();
+
   return (
     <View style={styles.inputAndCalcBtnWrapper}>
       <View style={{ width: '100%', margin: 5 }}>

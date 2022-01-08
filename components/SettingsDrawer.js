@@ -2,14 +2,12 @@ import React from 'react';
 import { Btn } from '../components/Btn';
 import { Text } from 'react-native';
 import { Actionsheet, Box, Button, Link } from 'native-base';
+import { useHomeContext } from '../context/HomeProvider';
 
-const SettingsDrawer = ({
-  isOpen,
-  onClose,
-  thirtyFive,
-  handle35OnPress,
-  navigation,
-}) => {
+const SettingsDrawer = () => {
+  const { isOpen, onClose, thirtyFive, handle35OnPress, navigation } =
+    useHomeContext();
+
   return (
     <Actionsheet isOpen={isOpen} onClose={onClose}>
       <Actionsheet.Content>

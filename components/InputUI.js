@@ -3,19 +3,23 @@ import { Ionicons } from '@expo/vector-icons';
 import InputAndCalcBtn from '../components/InputAndCalBtn';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { Button, VStack, IconButton, Icon } from 'native-base';
+import { useHomeContext } from '../context/HomeProvider';
 
-const InputUI = ({
-  onOpen,
-  saveWeight,
-  savedWeight,
-  clearSavedWeights,
-  handleOnPress,
-  resetValues,
-  weight,
-  handleValueChange,
-  percentage,
-  setWeight,
-}) => {
+const InputUI = () => {
+  const {
+    onOpen,
+    saveWeight,
+    savedWeight,
+    clearSavedWeights,
+    handleOnPress,
+    resetValues,
+    weight,
+    handleValueChange,
+    percentage,
+    setWeight,
+    enterWeight,
+  } = useHomeContext();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -54,12 +58,12 @@ const InputUI = ({
         </VStack>
       </View>
       <InputAndCalcBtn
-        handleOnPress={handleOnPress}
-        resetValues={resetValues}
-        weight={weight}
-        handleValueChange={handleValueChange}
-        percentage={percentage}
-        setWeight={setWeight}
+      // handleOnPress={handleOnPress}
+      // resetValues={resetValues}
+      // weight={weight}
+      // handleValueChange={handleValueChange}
+      // percentage={percentage}
+      // enterWeight={enterWeight}
       />
     </KeyboardAvoidingView>
   );
