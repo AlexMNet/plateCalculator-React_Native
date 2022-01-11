@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { useHomeContext } from '../context/HomeProvider';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 function WeightDisplay() {
   const { inputWeight, targetWeight } = useHomeContext();
@@ -31,15 +32,13 @@ function WeightDisplay() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   testWeightDisplayContainer: {
     width: '100%',
-    height: 100,
-    // marginTop: 5,
+    height: '12.5%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    // backgroundColor: 'blue',
   },
   targetWeightWrapper: {
     flex: 1,
@@ -47,20 +46,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    // borderColor: 'grey',
-    // borderWidth: 1,
-    // backgroundColor: 'pink',
   },
   targetWeightDisplay: {
     flex: 0.8,
-    // backgroundColor: 'yellow',
-
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   targetTextPounds: {
-    fontSize: 30,
+    fontSize: '1.88rem',
     fontWeight: 'bold',
   },
   targetWeightText: {
@@ -87,14 +81,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   finalTextPounds: {
-    fontSize: 30,
+    fontSize: '1.88rem',
     fontWeight: 'bold',
   },
   finalWeightText: {
     flex: 0.2,
     width: '100%',
-    // borderTopWidth: 1,
-    // borderTopColor: 'grey',
     alignItems: 'center',
   },
 });

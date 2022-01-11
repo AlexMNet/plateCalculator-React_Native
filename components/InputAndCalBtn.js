@@ -4,6 +4,7 @@ import { StyleSheet, View, TextInput } from 'react-native';
 import { Btn } from './Btn';
 import percentages from '../utilities/data/percentages';
 import { useHomeContext } from '../context/HomeProvider';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default function inputAndCalcBtn() {
   const {
@@ -60,7 +61,7 @@ export default function inputAndCalcBtn() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   inputAndCalcBtnWrapper: {
     flexDirection: 'column',
     alignItems: 'center',
@@ -68,12 +69,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   input: {
-    paddingVertical: 15,
-    paddingHorizontal: 15,
+    paddingVertical: '.94rem',
+    paddingHorizontal: '.94rem',
     backgroundColor: '#fff',
     borderRadius: 60,
     borderColor: '#C0C0C0',
-    borderWidth: 1,
-    width: 285,
+    borderWidth: '.05rem',
+    width: '73%',
   },
 });

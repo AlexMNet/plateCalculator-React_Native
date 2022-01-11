@@ -4,6 +4,7 @@ import InputAndCalcBtn from '../components/InputAndCalBtn';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { Button, VStack, IconButton, Icon } from 'native-base';
 import { useHomeContext } from '../context/HomeProvider';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const InputUI = () => {
   const { onOpen, saveWeight, savedWeight, clearSavedWeights } =
@@ -53,10 +54,10 @@ const InputUI = () => {
 
 export default InputUI;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   inputWeightWrapper: {
     position: 'absolute',
-    bottom: 60,
+    bottom: '5%',
     width: '100%',
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: 10,
-    marginRight: 25,
+    marginBottom: '2.5%',
+    marginRight: '2%',
   },
 });

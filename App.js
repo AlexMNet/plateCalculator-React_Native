@@ -3,11 +3,15 @@ import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Home from './screens/Home';
 import Max from './screens/Max';
 
 const Tab = createMaterialTopTabNavigator();
+
+//Configure Extended Style Sheet
+EStyleSheet.build({});
 
 export default function App() {
   return (
