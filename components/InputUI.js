@@ -14,7 +14,7 @@ const InputUI = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.inputWeightWrapper}
-      keyboardVerticalOffset={100}
+      keyboardVerticalOffset={130}
     >
       <View style={styles.btnsWrapper}>
         {/* future buttons */}
