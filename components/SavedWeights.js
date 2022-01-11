@@ -2,6 +2,7 @@ import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { Btn } from '../components/Btn';
 import { useHomeContext } from '../context/HomeProvider';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const SavedWeights = () => {
   const { savedWeight, useSavedWeight, removeWeight } = useHomeContext();
@@ -27,9 +28,9 @@ const SavedWeights = () => {
 
 export default SavedWeights;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 300,
+    height: '10.2rem',
   },
 });

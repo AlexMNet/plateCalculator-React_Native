@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import Bar from '../components/Bar';
 import SavedWeights from '../components/SavedWeights';
 import HideKeyboard from '../components/HideKeyboard';
@@ -10,6 +10,7 @@ import InputUI from '../components/InputUI';
 import Toast from 'react-native-toast-message';
 import toastConfig from '../utilities/toastConfig.js';
 import { HomeProvider } from '../context/HomeProvider';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default function Home({ navigation }) {
   return (
@@ -30,13 +31,12 @@ export default function Home({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#E8EAED',
-    paddingHorizontal: 20,
+    paddingHorizontal: '3%',
   },
 });

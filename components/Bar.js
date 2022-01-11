@@ -4,6 +4,7 @@ import { genPlateComponents } from '../utilities/functions/functions';
 import Plate from './Plate';
 import PlateDisplay from './PlateDisplay';
 import { useHomeContext } from '../context/HomeProvider';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Bar = () => {
   const { inputWeight, thirtyFive } = useHomeContext();
@@ -44,7 +45,7 @@ const Bar = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   barContainer: {
-    height: 150,
+    height: '9.4rem',
     width: '100%',
     flexDirection: 'column',
     alignItems: 'center',
@@ -60,23 +61,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bar: {
-    width: 320,
-    height: 5,
+    width: '20rem',
+    height: '.31rem',
     backgroundColor: '#595959',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   barLeft: {
-    width: 115,
-    height: 5,
+    width: '20rem / 3',
+    height: '.31rem',
     backgroundColor: '#595959',
     flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   barRight: {
-    width: 115,
-    height: 5,
+    width: '20rem / 3',
+    height: '.31rem',
     backgroundColor: '#595959',
     flexDirection: 'row',
     alignItems: 'center',
