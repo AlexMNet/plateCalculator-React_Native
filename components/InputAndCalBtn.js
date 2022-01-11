@@ -47,13 +47,14 @@ export default function inputAndCalcBtn() {
           returnKeyLabel={'Calculate'}
         ></TextInput>
 
-        <View>
+        <View style={styles.percentageWrapper}>
           <RNPickerSelect
             placeholder={{ label: 'Percentage', value: 100 }}
             onValueChange={(value) => handleValueChange(value)}
             value={percentage}
             items={percentages}
             useNativeAndroidPickerStyle={false}
+            style={{ inputIOS: { fontSize: 18, fontWeight: 'bold' } }}
           />
         </View>
       </View>
@@ -76,5 +77,12 @@ const styles = EStyleSheet.create({
     borderColor: '#C0C0C0',
     borderWidth: '.05rem',
     width: '73%',
+  },
+  percentageWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
