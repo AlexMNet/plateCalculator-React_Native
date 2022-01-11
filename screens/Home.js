@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import Bar from '../components/Bar';
 import SavedWeights from '../components/SavedWeights';
 import HideKeyboard from '../components/HideKeyboard';
