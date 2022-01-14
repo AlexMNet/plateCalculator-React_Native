@@ -3,22 +3,21 @@ import { Btn } from '../components/Btn';
 import { Text } from 'react-native';
 import { Actionsheet, Box, Button, Link } from 'native-base';
 import { useHomeContext } from '../context/HomeProvider';
+import { useThemeContext } from '../theme/ThemeProvider';
 
 const SettingsDrawer = () => {
   const { isOpen, onClose, thirtyFive, handle35OnPress, navigation } =
     useHomeContext();
 
+  const colorScheme = useThemeContext();
+
   return (
     <Actionsheet isOpen={isOpen} onClose={onClose}>
-      <Actionsheet.Content>
+      <Actionsheet.Content
+        style={{ backgroundColor: colorScheme.backgroundSecondary }}
+      >
         <Box w='100%' h={60} px={4} justifyContent='center'>
-          <Text
-            fontSize='16'
-            color='gray.500'
-            _dark={{
-              color: 'gray.300',
-            }}
-          >
+          <Text fontSize='16' style={{ color: colorScheme.textPrimary }}>
             Settings
           </Text>
         </Box>

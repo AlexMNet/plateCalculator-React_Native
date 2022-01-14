@@ -1,7 +1,7 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import InputAndCalcBtn from '../components/InputAndCalBtn';
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, View } from 'react-native';
 import { Button, VStack, IconButton, Icon } from 'native-base';
 import { useHomeContext } from '../context/HomeProvider';
 import { useThemeContext } from '../theme/ThemeProvider';
