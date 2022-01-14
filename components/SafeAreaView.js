@@ -14,6 +14,7 @@ const SafeArea = ({ children }) => {
         backgroundColor: colorScheme.background,
       }}
     >
+      <StatusBar barStyle={colorScheme.statusBar} />
       {children}
     </SafeAreaView>
   );
