@@ -13,22 +13,23 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "userInterfaceStyle": "automatic"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "description": "An app that will calculate what plates you need for your barbell at a given weight",
-    "githubUrl": "https://github.com/AlexMNet/plateCalculator-React_Native"
+    "githubUrl": "https://github.com/AlexMNet/plateCalculator-React_Native",
+    "userInterfaceStyle": "automatic"
   }
 }

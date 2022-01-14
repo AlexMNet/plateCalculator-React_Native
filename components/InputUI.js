@@ -4,11 +4,15 @@ import InputAndCalcBtn from '../components/InputAndCalBtn';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { Button, VStack, IconButton, Icon } from 'native-base';
 import { useHomeContext } from '../context/HomeProvider';
+import { useThemeContext } from '../theme/ThemeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const InputUI = () => {
   const { onOpen, saveWeight, savedWeight, clearSavedWeights } =
     useHomeContext();
+  const colorScheme = useThemeContext();
+
+  const styles = getStyles(colorScheme);
 
   return (
     <KeyboardAvoidingView
@@ -54,22 +58,23 @@ const InputUI = () => {
 
 export default InputUI;
 
-const styles = EStyleSheet.create({
-  inputWeightWrapper: {
-    position: 'absolute',
-    bottom: '5%',
-    width: '100%',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#E8EAED',
-  },
-  btnsWrapper: {
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: '2.5%',
-    marginRight: '2%',
-  },
-});
+const getStyles = (colorScheme) =>
+  EStyleSheet.create({
+    inputWeightWrapper: {
+      position: 'absolute',
+      bottom: '5%',
+      width: '100%',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      backgroundColor: colorScheme.background,
+    },
+    btnsWrapper: {
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      width: '100%',
+      marginBottom: '2.5%',
+      marginRight: '2%',
+    },
+  });
