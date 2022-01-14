@@ -12,11 +12,16 @@ import { NativeBaseProvider, Button } from 'native-base';
 import HideKeyboard from '../components/HideKeyboard';
 import tw from 'twrnc';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { useThemeContext } from '../theme/ThemeProvider';
 
 export default function Max({ navigation }) {
   const [inputWeight, setInputWeight] = useState('');
   const [reps, setReps] = useState('');
   const [result, setResult] = useState('');
+
+  const colorScheme = useThemeContext();
+  const styles = getStyles(colorScheme);
 
   const handlePress = () => {
     if (+inputWeight <= 0) return alert('Weight must be greater than zero!');
@@ -44,14 +49,22 @@ export default function Max({ navigation }) {
   return (
     <NativeBaseProvider>
       <HideKeyboard>
-        <View style={tw`flex flex-col h-full justify-between py-10`}>
+        <View
+          style={[
+            tw`flex flex-col h-full justify-between py-10`,
+            styles.container,
+          ]}
+        >
           <View style={tw`mt-10`}>
             {result ? (
               <Text style={tw`text-center text-8xl text-green-400`}>
-                {result} <Text style={tw`text-black text-3xl`}>lbs</Text>
+                {result}{' '}
+                <Text style={[tw`text-black text-3xl`, styles.heading]}>
+                  lbs
+                </Text>
               </Text>
             ) : (
-              <Text style={tw`text-center text-3xl`}>
+              <Text style={[tw`text-center text-3xl`, styles.heading]}>
                 Enter Weight To Find Out Max
               </Text>
             )}
@@ -66,7 +79,7 @@ export default function Max({ navigation }) {
           <KeyboardAvoidingView
             // style={tw` `}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            keyboardVerticalOffset={110}
+            keyboardVerticalOffset={130}
           >
             <View style={tw`px-5`}>
               <TextInput
@@ -80,7 +93,10 @@ export default function Max({ navigation }) {
                 returnKeyLabel={'Calculate'}
                 blurOnSubmit={true}
                 textAlign='center'
-                style={tw`border-b-2 border-gray-400 p-5 mb-5 text-xl`}
+                style={[
+                  tw`border-b-2 border-gray-400 p-5 mb-5 text-xl`,
+                  styles.input,
+                ]}
               />
               <TextInput
                 name='input'
@@ -92,8 +108,11 @@ export default function Max({ navigation }) {
                 keyboardAppearance={'dark'}
                 returnKeyLabel={'Calculate'}
                 textAlign='center'
-                style={tw` border-b-2 border-gray-400 p-5 mb-5 text-xl
-                `}
+                style={[
+                  tw` border-b-2 border-gray-400 p-5 mb-5 text-xl
+                `,
+                  styles.input,
+                ]}
               />
               <Button
                 style={tw`w-full bg-blue-500`}
@@ -112,4 +131,15 @@ export default function Max({ navigation }) {
 }
 
 //Testing tailwindcss
-const styles = StyleSheet.create({});
+const getStyles = (colorScheme) =>
+  EStyleSheet.create({
+    container: {
+      backgroundColor: colorScheme.background,
+    },
+    heading: {
+      color: colorScheme.textPrimary,
+    },
+    input: {
+      color: colorScheme.textPrimary,
+    },
+  });

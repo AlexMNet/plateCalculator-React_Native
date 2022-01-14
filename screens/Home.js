@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Appearance } from 'react-native';
 import Bar from '../components/Bar';
 import SavedWeights from '../components/SavedWeights';
 import HideKeyboard from '../components/HideKeyboard';
@@ -11,8 +11,13 @@ import Toast from 'react-native-toast-message';
 import toastConfig from '../utilities/toastConfig.js';
 import { HomeProvider } from '../context/HomeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useThemeContext } from '../theme/ThemeProvider';
 
 export default function Home({ navigation }) {
+  const colorScheme = useThemeContext();
+
+  const styles = getStyles(colorScheme);
+
   return (
     <NativeBaseProvider>
       <HomeProvider>
@@ -31,12 +36,23 @@ export default function Home({ navigation }) {
   );
 }
 
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#E8EAED',
-    paddingHorizontal: '3%',
-  },
-});
+const getStyles = (colorScheme) =>
+  EStyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: colorScheme.background,
+      paddingHorizontal: '3%',
+    },
+  });
+
+// const styles = EStyleSheet.create({
+//   container: {
+//     flex: 1,
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//     // backgroundColor: '#E8EAED',
+//     paddingHorizontal: '3%',
+//   },
+// });

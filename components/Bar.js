@@ -1,13 +1,18 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { genPlateComponents } from '../utilities/functions/functions';
 import Plate from './Plate';
 import PlateDisplay from './PlateDisplay';
 import { useHomeContext } from '../context/HomeProvider';
+import { useThemeContext } from '../theme/ThemeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Bar = () => {
   const { inputWeight, thirtyFive } = useHomeContext();
+
+  const colorScheme = useThemeContext();
+  const styles = getStyles(colorScheme);
+
   //Create array of objects. Each object defines a plate Compnent
   const plates = genPlateComponents(inputWeight, thirtyFive);
 
@@ -45,44 +50,45 @@ const Bar = () => {
   );
 };
 
-const styles = EStyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 'auto',
-    width: '100%',
-  },
-  barContainer: {
-    height: '9.4rem',
-    width: '100%',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
-  bar: {
-    width: '20rem',
-    height: '.31rem',
-    backgroundColor: '#595959',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  barLeft: {
-    width: '20rem / 3',
-    height: '.31rem',
-    backgroundColor: '#595959',
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  barRight: {
-    width: '20rem / 3',
-    height: '.31rem',
-    backgroundColor: '#595959',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-});
+const getStyles = (colorScheme) =>
+  EStyleSheet.create({
+    container: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 'auto',
+      width: '100%',
+    },
+    barContainer: {
+      height: '9.4rem',
+      width: '100%',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+    },
+    bar: {
+      width: '20rem',
+      height: '.31rem',
+      backgroundColor: '#595959',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    barLeft: {
+      width: '20rem / 3',
+      height: '.31rem',
+      backgroundColor: '#595959',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    barRight: {
+      width: '20rem / 3',
+      height: '.31rem',
+      backgroundColor: '#595959',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+  });
 
 export default Bar;
