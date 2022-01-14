@@ -5,6 +5,7 @@ export const lightColors = {
   textPrimary: '#27272a',
   error: '#D32F2F',
   inputColor: '#FFFFFF',
+  statusBar: 'content-light',
 };
 
 // Dark theme colors
@@ -14,4 +15,5 @@ export const darkColors = {
   textPrimary: '#FFFFFF',
   error: '#EF9A9A',
   inputColor: '#27272a',
+  statusBar: 'content-dark',
 };
