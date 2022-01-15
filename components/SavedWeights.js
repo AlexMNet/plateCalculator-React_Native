@@ -31,6 +31,6 @@ export default SavedWeights;
 const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: '10.2rem',
+    height: '70%',
   },
 });
