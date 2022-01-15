@@ -105,10 +105,12 @@ const HomeProvider = ({ children }) => {
       value={{
         weight,
         setWeight,
+        setInputWeight,
         inputWeight,
         thirtyFive,
         percentage,
         targetWeight,
+        setTargetWeight,
         savedWeight,
         saveWeight,
         clearSavedWeights,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge, Button, VStack, Center } from 'native-base';
-export function PlateBadge({ text, number, bg }) {
+export function PlateBadge({ text, number, bg, handleOnPress }) {
   return (
     <Center mr='5' mb='2'>
       <VStack>
@@ -28,6 +28,7 @@ export function PlateBadge({ text, number, bg }) {
           _text={{
             fontSize: 14,
           }}
+          onPress={() => handleOnPress()}
         >
           {text}
         </Button>
