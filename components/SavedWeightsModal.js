@@ -25,6 +25,7 @@ const SavedWeightsModal = () => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Saved Weights!</Text>
+            <Text style={styles.subTitleText}>Count: {savedWeight.length}</Text>
             <SavedWeights />
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -61,6 +62,8 @@ const getStyles = (colorScheme) =>
     },
     modalView: {
       margin: 20,
+      height: 'auto',
+      marginTop: '50%',
       backgroundColor: colorScheme.backgroundSecondary,
       borderRadius: 20,
       padding: 35,
@@ -84,6 +87,8 @@ const getStyles = (colorScheme) =>
     },
     buttonClose: {
       backgroundColor: '#2196F3',
+      position: 'absolute',
+      bottom: '5%',
     },
     textStyle: {
       color: 'white',
@@ -95,6 +100,9 @@ const getStyles = (colorScheme) =>
       textAlign: 'center',
       fontSize: 20,
       fontWeight: '500',
+      color: colorScheme.textPrimary,
+    },
+    subTitleText: {
       color: colorScheme.textPrimary,
     },
   });
