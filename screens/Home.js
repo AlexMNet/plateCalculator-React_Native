@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Appearance } from 'react-native';
+import { View } from 'react-native';
 import Bar from '../components/Bar';
-import SavedWeights from '../components/SavedWeights';
 import HideKeyboard from '../components/HideKeyboard';
 import WeightDisplay from '../components/WeightDisplay';
 import SettingsDrawer from '../components/SettingsDrawer';
@@ -12,6 +11,7 @@ import toastConfig from '../utilities/toastConfig.js';
 import { HomeProvider } from '../context/HomeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useThemeContext } from '../theme/ThemeProvider';
+import SavedWeightsModal from '../components/SavedWeightsModal';
 
 export default function Home({ navigation }) {
   const colorScheme = useThemeContext();
@@ -25,7 +25,7 @@ export default function Home({ navigation }) {
           <View style={styles.container}>
             <WeightDisplay />
             <Bar />
-            <SavedWeights />
+            <SavedWeightsModal />
             <InputUI />
             <Toast config={toastConfig} />
             <SettingsDrawer />
@@ -46,13 +46,3 @@ const getStyles = (colorScheme) =>
       paddingHorizontal: '3%',
     },
   });
-
-// const styles = EStyleSheet.create({
-//   container: {
-//     flex: 1,
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//     // backgroundColor: '#E8EAED',
-//     paddingHorizontal: '3%',
-//   },
-// });

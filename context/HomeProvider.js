@@ -15,6 +15,7 @@ const HomeProvider = ({ children }) => {
   const [targetWeight, setTargetWeight] = useState('');
   const [savedWeight, setSavedWeight] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclose();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const resetValues = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -68,6 +69,8 @@ const HomeProvider = ({ children }) => {
         type: 'success',
         text1: 'Weight saved!',
         text2: `${inputWeight} lbs`,
+        position: 'top',
+        topOffset: 0,
         visibilityTime: 2000,
       });
     }
@@ -78,6 +81,7 @@ const HomeProvider = ({ children }) => {
     w = w + '';
     setInputWeight(w);
     setTargetWeight(w);
+    setModalVisible(false);
   };
 
   const removeWeight = (w) => {
@@ -95,10 +99,6 @@ const HomeProvider = ({ children }) => {
     });
     setSavedWeight([]);
   };
-
-  // const enterWeight = (w) => {
-  //   setWeight(w);
-  // };
 
   return (
     <AppContext.Provider
@@ -124,6 +124,8 @@ const HomeProvider = ({ children }) => {
         handle35OnPress,
         useSavedWeight,
         removeWeight,
+        modalVisible,
+        setModalVisible,
       }}
     >
       {children}
