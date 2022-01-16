@@ -12,6 +12,8 @@ import { HomeProvider } from '../context/HomeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useThemeContext } from '../theme/ThemeProvider';
 import SavedWeightsModal from '../components/SavedWeightsModal';
+import SideControls from '../components/SideControls';
+import Spacer from '../components/Spacer';
 
 export default function Home({ navigation }) {
   const colorScheme = useThemeContext();
@@ -26,6 +28,8 @@ export default function Home({ navigation }) {
             <WeightDisplay />
             <Bar />
             <SavedWeightsModal />
+            <SideControls />
+            <Spacer />
             <InputUI />
             <Toast config={toastConfig} />
             <SettingsDrawer />

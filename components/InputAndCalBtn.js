@@ -23,7 +23,7 @@ export default function inputAndCalcBtn() {
 
   return (
     <View style={styles.inputAndCalcBtnWrapper}>
-      <View style={{ width: '100%', margin: 5 }}>
+      <View style={{ width: '100%' }}>
         <Btn
           text={'calculate'}
           onPress={handleOnPress}
@@ -80,6 +80,7 @@ const getStyles = (colorScheme) =>
       alignItems: 'center',
       justifyContent: 'space-around',
       width: '100%',
+      marginBottom: '2%',
     },
     input: {
       paddingVertical: '.94rem',

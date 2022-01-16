@@ -23,40 +23,8 @@ const InputUI = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.inputWeightWrapper}
-      keyboardVerticalOffset={130}
+      keyboardVerticalOffset={115}
     >
-      <View style={styles.btnsWrapper}>
-        {/* future buttons */}
-        <VStack space={3} alignItems='flex-end'>
-          <IconButton
-            onPress={onOpen}
-            icon={<Icon as={Ionicons} name='settings-outline' />}
-            _icon={{
-              color: '#4B5563',
-              size: 'md',
-            }}
-            _pressed={{
-              bg: 'transparent',
-              _icon: {
-                name: 'settings',
-              },
-            }}
-          />
-
-          <Button onPress={saveWeight} size='md' colorScheme='success'>
-            Save
-          </Button>
-          <Button
-            size='md'
-            colorScheme='amber'
-            isDisabled={savedWeight && savedWeight.length === 0}
-            onPress={() => setModalVisible(true)}
-            onLongPress={clearSavedWeights}
-          >
-            {'Saved Weights:' + ' ' + savedWeight.length}
-          </Button>
-        </VStack>
-      </View>
       <InputAndCalcBtn />
     </KeyboardAvoidingView>
   );
@@ -67,20 +35,9 @@ export default InputUI;
 const getStyles = (colorScheme) =>
   EStyleSheet.create({
     inputWeightWrapper: {
-      position: 'absolute',
-      bottom: '5%',
       width: '100%',
-      flexDirection: 'column',
-      justifyContent: 'space-around',
-      alignItems: 'center',
       backgroundColor: colorScheme.background,
-    },
-    btnsWrapper: {
-      flexDirection: 'column',
-      alignItems: 'flex-end',
-      justifyContent: 'center',
-      width: '100%',
-      marginBottom: '2.5%',
-      marginRight: '2%',
+      position: 'absolute',
+      bottom: 0,
     },
   });
