@@ -39,7 +39,8 @@ export default function Home({ navigation }) {
 const getStyles = (colorScheme) =>
   EStyleSheet.create({
     container: {
-      flex: 1,
+      // flex: 1,
+      height: '100%',
       flexDirection: 'column',
       alignItems: 'center',
       backgroundColor: colorScheme.background,
