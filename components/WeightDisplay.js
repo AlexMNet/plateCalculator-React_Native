@@ -40,7 +40,7 @@ const getStyles = (colorScheme) =>
   EStyleSheet.create({
     testWeightDisplayContainer: {
       width: '100%',
-      height: '12.5%',
+      height: '10%',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-around',
@@ -53,7 +53,7 @@ const getStyles = (colorScheme) =>
       height: '100%',
     },
     targetWeightDisplay: {
-      flex: 0.8,
+      flex: 0.7,
       width: '100%',
       alignItems: 'center',
       justifyContent: 'center',
@@ -64,24 +64,21 @@ const getStyles = (colorScheme) =>
       color: colorScheme.textPrimary,
     },
     targetWeightText: {
-      flex: 0.2,
+      flex: 0.3,
       width: '100%',
-      // borderTopWidth: 1,
-      // borderTopColor: 'grey',
+
       alignItems: 'center',
+      justifyContent: 'flex-end',
     },
     finalWeightWrapper: {
       flex: 1,
       flexDirection: 'column',
       height: '100%',
-      // backgroundColor: 'green',
       alignItems: 'center',
       justifyContent: 'center',
-      // borderColor: 'grey',
-      // borderWidth: 1,
     },
     finalWeightDisplay: {
-      flex: 0.8,
+      flex: 0.7,
       width: '100%',
       alignItems: 'center',
       justifyContent: 'center',
@@ -92,9 +89,10 @@ const getStyles = (colorScheme) =>
       color: colorScheme.textPrimary,
     },
     finalWeightText: {
-      flex: 0.2,
+      flex: 0.3,
       width: '100%',
       alignItems: 'center',
+      justifyContent: 'flex-end',
     },
   });
 
