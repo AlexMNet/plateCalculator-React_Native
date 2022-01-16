@@ -11,6 +11,10 @@ const SavedWeightsModal = () => {
   const colorScheme = useThemeContext();
   const styles = getStyles(colorScheme);
 
+  //When modal is not visible it still takes space
+  //So only render this component when modal is set to visible
+  if (!modalVisible) return null;
+
   return (
     <View style={styles.centeredView}>
       <Modal

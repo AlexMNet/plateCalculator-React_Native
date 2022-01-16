@@ -7,7 +7,7 @@ const SafeArea = ({ children }) => {
   const colorScheme = useThemeContext();
   return (
     <SafeAreaView
-      edges={['top', 'left', 'right']}
+      edges={['top', 'left', 'right', 'bottom']}
       style={{
         flex: 1,
         marginTop: StatusBar.currentHeight,
