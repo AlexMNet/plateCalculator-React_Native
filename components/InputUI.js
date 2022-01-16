@@ -8,8 +8,13 @@ import { useThemeContext } from '../theme/ThemeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const InputUI = () => {
-  const { onOpen, saveWeight, savedWeight, clearSavedWeights } =
-    useHomeContext();
+  const {
+    onOpen,
+    saveWeight,
+    savedWeight,
+    clearSavedWeights,
+    setModalVisible,
+  } = useHomeContext();
   const colorScheme = useThemeContext();
 
   const styles = getStyles(colorScheme);
@@ -45,9 +50,10 @@ const InputUI = () => {
             size='md'
             colorScheme='amber'
             isDisabled={savedWeight && savedWeight.length === 0}
-            onPress={clearSavedWeights}
+            onPress={() => setModalVisible(true)}
+            onLongPress={clearSavedWeights}
           >
-            Clear All Weights
+            {'Saved Weights:' + ' ' + savedWeight.length}
           </Button>
         </VStack>
       </View>

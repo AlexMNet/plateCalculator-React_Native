@@ -36,16 +36,6 @@ const SavedWeightsModal = () => {
           </View>
         </View>
       </Modal>
-      {savedWeight.length > 0 && (
-        <Button
-          size='sm'
-          variant={'solid'}
-          colorScheme='info'
-          onPress={() => setModalVisible(true)}
-        >
-          {'Saved Weights:' + ' ' + savedWeight.length}
-        </Button>
-      )}
     </View>
   );
 };

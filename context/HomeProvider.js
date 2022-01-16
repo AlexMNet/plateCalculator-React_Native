@@ -95,6 +95,8 @@ const HomeProvider = ({ children }) => {
     Toast.show({
       type: 'info',
       text1: 'Weights Deleted!',
+      position: 'top',
+      topOffset: 0,
       visibilityTime: 2000,
     });
     setSavedWeight([]);
