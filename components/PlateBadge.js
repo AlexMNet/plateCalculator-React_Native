@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 import { Badge, Button, VStack, Center } from 'native-base';
 export function PlateBadge({ text, number, bg, handleOnPress }) {
   return (
@@ -26,7 +27,7 @@ export function PlateBadge({ text, number, bg, handleOnPress }) {
           p='2'
           bg={bg}
           _text={{
-            fontSize: 14,
+            fontSize: Dimensions.get('window').width > 375 ? 14 : 10,
           }}
           onPress={() => handleOnPress()}
         >
