@@ -16,7 +16,7 @@ const HomeProvider = ({ children }) => {
   const [savedWeight, setSavedWeight] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclose();
   const [modalVisible, setModalVisible] = useState(false);
-  const [modeAddPlates, setModeAddPlates] = useState(true);
+  const [modeAddPlates, setModeAddPlates] = useState(false);
 
   const resetValues = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
