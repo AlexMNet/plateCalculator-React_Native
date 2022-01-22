@@ -6,8 +6,15 @@ import { useHomeContext } from '../context/HomeProvider';
 import { useThemeContext } from '../theme/ThemeProvider';
 
 const SettingsDrawer = () => {
-  const { isOpen, onClose, thirtyFive, handle35OnPress, navigation } =
-    useHomeContext();
+  const {
+    isOpen,
+    onClose,
+    thirtyFive,
+    handle35OnPress,
+    handleOnPressMode,
+    modeAddPlates,
+    navigation,
+  } = useHomeContext();
 
   const colorScheme = useThemeContext();
 
@@ -26,6 +33,14 @@ const SettingsDrawer = () => {
             text='35lb Plate'
             onPress={handle35OnPress}
             bgColor={thirtyFive ? '#FCF55F' : '#fefce8'}
+            textColor='black'
+          />
+        </Actionsheet.Item>
+        <Actionsheet.Item>
+          <Btn
+            text='Calc by plate'
+            onPress={handleOnPressMode}
+            bgColor={modeAddPlates ? '#38bdf8' : '#e0f2fe'}
             textColor='black'
           />
         </Actionsheet.Item>
