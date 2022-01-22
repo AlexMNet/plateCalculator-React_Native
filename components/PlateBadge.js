@@ -1,7 +1,13 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { Badge, Button, VStack, Center } from 'native-base';
-export function PlateBadge({ text, number, bg, handleOnPress }) {
+export function PlateBadge({
+  text,
+  number,
+  bg,
+  handleOnPress,
+  handleOnLongPress,
+}) {
   return (
     <Center mr='5' mb='2'>
       <VStack>
@@ -30,6 +36,7 @@ export function PlateBadge({ text, number, bg, handleOnPress }) {
             fontSize: Dimensions.get('window').width > 375 ? 14 : 10,
           }}
           onPress={() => handleOnPress()}
+          onLongPress={() => handleOnLongPress()}
         >
           {text}
         </Button>
