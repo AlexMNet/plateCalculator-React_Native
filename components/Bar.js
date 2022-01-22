@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { genPlateComponents } from '../utilities/functions/functions';
 import Plate from './Plate';
-import PlateDisplay from './PlateDisplay';
+import PlateBadgeDisplay from './PlateBadgeDisplay';
 import { useHomeContext } from '../context/HomeProvider';
 import { useThemeContext } from '../theme/ThemeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -45,7 +45,7 @@ const Bar = () => {
           </View>
         </View>
       </View>
-      <PlateDisplay plateNumbers={plateNumbers} />
+      <PlateBadgeDisplay plateNumbers={plateNumbers} />
     </View>
   );
 };

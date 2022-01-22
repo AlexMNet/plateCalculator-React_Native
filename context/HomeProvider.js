@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDisclose } from 'native-base';
 import { Alert, Keyboard } from 'react-native';
 import Toast from 'react-native-toast-message';
@@ -16,7 +16,7 @@ const HomeProvider = ({ children }) => {
   const [savedWeight, setSavedWeight] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclose();
   const [modalVisible, setModalVisible] = useState(false);
-  const [modeAddPlates, setModeAddPlates] = useState(false);
+  const [modeAddPlates, setModeAddPlates] = useState(true);
 
   const resetValues = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -107,6 +107,41 @@ const HomeProvider = ({ children }) => {
     setSavedWeight([]);
   };
 
+  const handleOnLongPressBadges = (type, numOfPlates) => {
+    if (modeAddPlates) {
+      const newWeight = inputWeight - type * 2;
+
+      setInputWeight(newWeight);
+      setTargetWeight(newWeight);
+    } else {
+      const newWeight = inputWeight - type * numOfPlates * 2;
+
+      setInputWeight(newWeight);
+      setTargetWeight(newWeight);
+    }
+  };
+
+  const handleOnPressBadges = (type) => {
+    if (modeAddPlates) {
+      if (inputWeight > 0) {
+        const newWeight = inputWeight + type * 2;
+        setInputWeight(newWeight);
+        setTargetWeight(newWeight);
+      }
+
+      if (inputWeight === 0 || inputWeight === '') {
+        const newWeight = 45 + type * 2;
+        setInputWeight(newWeight);
+        setTargetWeight(newWeight);
+      }
+    } else {
+      const newWeight = inputWeight - type * 2;
+
+      setInputWeight(newWeight);
+      setTargetWeight(newWeight);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -135,6 +170,8 @@ const HomeProvider = ({ children }) => {
         setModalVisible,
         modeAddPlates,
         handleOnPressMode,
+        handleOnLongPressBadges,
+        handleOnPressBadges,
       }}
     >
       {children}
