@@ -17,6 +17,12 @@ const HomeProvider = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclose();
   const [modalVisible, setModalVisible] = useState(false);
   const [modeAddPlates, setModeAddPlates] = useState(false);
+  const [barWeight, setBarWeight] = useState(45);
+
+  const handleOnChangeBarWeight = (value) => {
+    setBarWeight(value);
+    handleOnPress();
+  };
 
   const resetValues = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -130,7 +136,7 @@ const HomeProvider = ({ children }) => {
       }
 
       if (inputWeight === 0 || inputWeight === '') {
-        const newWeight = 45 + type * 2;
+        const newWeight = barWeight + type * 2;
         setInputWeight(newWeight);
         setTargetWeight(newWeight);
       }
@@ -172,6 +178,9 @@ const HomeProvider = ({ children }) => {
         handleOnPressMode,
         handleOnLongPressBadges,
         handleOnPressBadges,
+        barWeight,
+        setBarWeight,
+        handleOnChangeBarWeight,
       }}
     >
       {children}
