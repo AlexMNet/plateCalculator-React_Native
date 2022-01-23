@@ -8,13 +8,13 @@ import { useThemeContext } from '../theme/ThemeProvider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Bar = () => {
-  const { inputWeight, thirtyFive } = useHomeContext();
+  const { inputWeight, thirtyFive, barWeight } = useHomeContext();
 
   const colorScheme = useThemeContext();
   const styles = getStyles(colorScheme);
 
   //Create array of objects. Each object defines a plate Compnent
-  const plates = genPlateComponents(inputWeight, thirtyFive);
+  const plates = genPlateComponents(inputWeight, thirtyFive, barWeight);
 
   //Last object in plates array is an object of plates as keys and the number of each plate as values
   const plateNumbers = plates[plates.length - 1];
