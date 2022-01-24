@@ -117,10 +117,13 @@ const HomeProvider = ({ children }) => {
     if (modeAddPlates) {
       const newWeight = inputWeight - type * 2;
 
+      //Prevent removing plates from reaching 0 or negative numbers
+      if (newWeight < 0) return;
+
       setInputWeight(newWeight);
       setTargetWeight(newWeight);
     } else {
-      const newWeight = inputWeight - type * numOfPlates * 2;
+      let newWeight = inputWeight - type * numOfPlates * 2;
 
       setInputWeight(newWeight);
       setTargetWeight(newWeight);
