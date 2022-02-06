@@ -13,7 +13,7 @@ export default function AddByInput({ plateNumbers }) {
         <PlateBadge
           text={'45 LB'}
           number={plateNumbers.fortyFive}
-          bg={'plates.45'}
+          bg={'#0F52BA'}
           handleOnPress={() => handleOnPressBadges(45)}
           handleOnLongPress={() =>
             handleOnLongPressBadges(45, plateNumbers.fortyFive)
@@ -25,7 +25,7 @@ export default function AddByInput({ plateNumbers }) {
         <PlateBadge
           text={'35 LB'}
           number={plateNumbers.thirtyFive}
-          bg={'plates.35'}
+          bg={'#FCF55F'}
           handleOnPress={() => handleOnPressBadges(35)}
           handleOnLongPress={() =>
             handleOnLongPressBadges(55, plateNumbers.thirtyFive)
@@ -37,7 +37,7 @@ export default function AddByInput({ plateNumbers }) {
         <PlateBadge
           text={'25 LB'}
           number={plateNumbers.twentyFive}
-          bg={'plates.25'}
+          bg={'#009E60'}
           handleOnPress={() => handleOnPressBadges(25)}
           handleOnLongPress={() =>
             handleOnLongPressBadges(25, plateNumbers.twentyFive)
@@ -50,7 +50,7 @@ export default function AddByInput({ plateNumbers }) {
         <PlateBadge
           text={'10 LB'}
           number={plateNumbers.ten}
-          bg={'plates.10'}
+          bg={'#FAF9F6'}
           handleOnPress={() => handleOnPressBadges(10)}
           handleOnLongPress={() =>
             handleOnLongPressBadges(10, plateNumbers.ten)
@@ -63,7 +63,7 @@ export default function AddByInput({ plateNumbers }) {
         <PlateBadge
           text={'5 LB'}
           number={plateNumbers.five}
-          bg={'plates.5'}
+          bg={'#880808'}
           handleOnPress={() => handleOnPressBadges(5)}
           handleOnLongPress={() =>
             handleOnLongPressBadges(5, plateNumbers.five)
@@ -76,7 +76,7 @@ export default function AddByInput({ plateNumbers }) {
         <PlateBadge
           text={'2.5 LB'}
           number={plateNumbers.twoPointFive}
-          bg={'plates.2'}
+          bg={'black'}
           handleOnPress={() => handleOnPressBadges(2.5)}
           handleOnLongPress={() =>
             handleOnLongPressBadges(2.5, plateNumbers.twoPointFive)
