@@ -9,16 +9,16 @@ export function PlateBadge({
   handleOnLongPress,
 }) {
   return (
-    <Center mr='5' mb='2'>
+    <Center mr="5" mb="2">
       <VStack>
         <Badge // bg="red.400"
-          colorScheme='danger'
-          rounded='999px'
+          colorScheme="danger"
+          rounded="999px"
           mb={-4}
           mr={-4}
           zIndex={1}
-          variant='solid'
-          alignSelf='flex-end'
+          variant="solid"
+          alignSelf="flex-end"
           _text={{
             fontSize: 12,
           }}
@@ -30,7 +30,7 @@ export function PlateBadge({
             base: 'auto',
             md: 0,
           }}
-          p='2'
+          p="2"
           bg={bg}
           _text={{
             fontSize: Dimensions.get('window').width > 375 ? 14 : 10,
