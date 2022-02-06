@@ -49,7 +49,18 @@ export const genPlateComponents = (weight, thirtyFive, barWeight) => {
     weight = weight - 5;
   }
 
+  //Add plate numbers to an object at the end of the array
   plates.push(plateNumbers);
+
+  //Add an object of plate colors for badges in the object created above
+  plates[plates.length - 1]['colors'] = {
+    blue: '#0F52BA',
+    yellow: '#FCF55F',
+    green: '#009E60',
+    white: '#FAF9F6',
+    red: '#880808',
+    black: '#000000',
+  };
 
   return plates;
 };
