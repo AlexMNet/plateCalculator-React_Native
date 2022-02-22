@@ -90,6 +90,7 @@ const HomeProvider = ({ children }) => {
   const useSavedWeight = (w) => {
     Haptics.selectionAsync();
     w = w + '';
+    setWeight(w);
     setInputWeight(w);
     setTargetWeight(w);
     setModalVisible(false);
