@@ -8,7 +8,7 @@
 
 ## Warning:
 
-This application is no longer being supported. I haven't had much time to keep it up to date and will be replacing this with an easier to maintain PWA version soon.
+This application is no longer being supported. I haven't had much time to keep it up to date and will be replacing this with an easier to maintain PWA version soon. The new application is a work in progress and can be found here. [Plate Weight PWA](https://github.com/AlexMNet/plate-weight-pwa)
 
 ---
 
